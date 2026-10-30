@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Sidebar } from './components/Sidebar'
 import { Header } from './components/Header'
 import { Greeting } from './components/Greeting'
+import { HighlightsBanner } from './components/HighlightsBanner'
 import { WriteButton } from './components/WriteButton'
 import { RecentThoughts } from './components/RecentThoughts'
 import { BottomNav } from './components/BottomNav'
@@ -241,6 +242,20 @@ export function App() {
                 <Greeting
                   userName={userName}
                   onUpdateUserName={handleUpdateUserName}
+                />
+
+                {/* Core Convictions & Emotional Highlights */}
+                <HighlightsBanner
+                  onOpenEntryById={(id) => {
+                    const match = entries.find(
+                      (e) => e.id === id || (id.includes('mission') && e.title.includes('Mission 2027'))
+                    )
+                    if (match) {
+                      setActiveEntry(match)
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }
+                  }}
+                  entries={entries}
                 />
 
                 {/* + write something (Artistic wide studio launcher) */}

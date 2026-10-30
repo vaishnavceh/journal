@@ -8,4 +8,14 @@ export interface JournalEntry {
   tags?: string[]
 }
 
+export interface Highlight {
+  id: string
+  quote: string
+  context: string
+  entryId: string
+  date: string
+  translation?: string
+  tag: string
+}
+
 export type TabView = 'journal' | 'archive' | 'about'

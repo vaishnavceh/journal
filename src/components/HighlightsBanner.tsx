@@ -81,7 +81,9 @@ export const HighlightsBanner: React.FC<HighlightsBannerProps> = ({
 
         {/* Quote Content */}
         <div className="relative py-2">
-          <blockquote className="text-xl sm:text-2xl font-serif-title font-normal leading-[1.8] sm:leading-[1.9] text-stone-900 dark:text-stone-100 tracking-tight transition-all font-malayalam">
+          <blockquote className={`text-xl sm:text-2xl font-serif-title font-normal leading-[1.8] sm:leading-[1.9] text-stone-900 dark:text-stone-100 tracking-tight transition-all ${
+            /[\u0D00-\u0D7F]/.test(current.quote) ? 'font-malayalam' : ''
+          }`}>
             &ldquo;{current.quote}&rdquo;
           </blockquote>
 

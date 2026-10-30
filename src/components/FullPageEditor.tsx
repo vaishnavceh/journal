@@ -273,6 +273,10 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
                 onChange={(e) => setCategory(e.target.value)}
                 className="bg-transparent border-b border-dashed border-stone-300 dark:border-stone-700 outline-none text-stone-700 dark:text-stone-300 cursor-pointer pb-0.5 text-xs font-mono-meta"
               >
+                <option value="Personal Life / Relationships" className="dark:bg-stone-900">Personal Life / Relationships</option>
+                <option value="Happy Memories / Daily Life" className="dark:bg-stone-900">Happy Memories / Daily Life</option>
+                <option value="Personal Life / Friendships" className="dark:bg-stone-900">Personal Life / Friendships</option>
+                <option value="Personal Life" className="dark:bg-stone-900">Personal Life</option>
                 <option value="Personal Growth" className="dark:bg-stone-900">Personal Growth</option>
                 <option value="Health & Fitness" className="dark:bg-stone-900">Health & Fitness</option>
                 <option value="Lifestyle" className="dark:bg-stone-900">Lifestyle</option>

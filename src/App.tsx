@@ -35,18 +35,29 @@ export function App() {
     const saved = localStorage.getItem('vaishh_entries')
     const version = localStorage.getItem('vaishh_entries_version')
 
-    // Clean upgrade to the dedicated 16-entry MISSION 2027 collection
-    if (version !== 'mission_2027_v1') {
+    // Clean upgrade to include Mission 2027 and personal reflections
+    if (version !== 'vaishh_entries_v2') {
+      let merged: JournalEntry[] = INITIAL_ENTRIES
       if (saved) {
         try {
-          localStorage.setItem('vaishh_entries_backup_pre_mission2027', saved)
+          const parsed = JSON.parse(saved)
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const uniqueMap = new Map<string, JournalEntry>()
+            INITIAL_ENTRIES.forEach((item) => uniqueMap.set(item.id, item))
+            parsed.forEach((item: JournalEntry) => {
+              if (item.id && !uniqueMap.has(item.id)) {
+                uniqueMap.set(item.id, item)
+              }
+            })
+            merged = Array.from(uniqueMap.values())
+          }
         } catch {
           // ignore quota error
         }
       }
-      localStorage.setItem('vaishh_entries_version', 'mission_2027_v1')
-      localStorage.setItem('vaishh_entries', JSON.stringify(INITIAL_ENTRIES))
-      return INITIAL_ENTRIES
+      localStorage.setItem('vaishh_entries_version', 'vaishh_entries_v2')
+      localStorage.setItem('vaishh_entries', JSON.stringify(merged))
+      return merged
     }
 
     if (saved) {

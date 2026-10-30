@@ -49,7 +49,7 @@ export const RecentThoughts: React.FC<RecentThoughtsProps> = ({
 
       <div className="flex items-center justify-between pb-2 mb-2">
         <h2 className="text-xs font-mono-meta tracking-widest uppercase text-stone-400 dark:text-stone-500 font-medium">
-          MISSION 2027 REFLECTIONS
+          RECENT THOUGHTS & REFLECTIONS
         </h2>
         {entries.length > 0 && (
           <span className="text-[11px] font-mono-meta text-stone-400 dark:text-stone-600">

@@ -612,5 +612,141 @@ God-നോടും family-യോടുമുള്ള connection നിലന�
 ഈ entry-യുടെ final reflection March 31, 2027-ൽ എഴുതണം.
 
 **I hope my future self is proud that I started.**`
+  },
+  {
+    id: 'entry-anaswara-choosing-clarity',
+    sort_order: 17,
+    title: 'Anaswara — Choosing Clarity',
+    subtitle: "I wasn't asking for a promise. I was asking for clarity.",
+    date: 'October 29–30, 2026',
+    mood: 'Calm, Reflective',
+    category: 'Personal Life / Relationships',
+    createdAt: new Date('2026-10-30T17:30:00').getTime(),
+    tags: ['anaswara', 'clarity', 'relationships', 'reflection'],
+    content: `Over the past few months, my connection with Anaswara gradually became meaningful to me. What began as ordinary conversations developed into genuine romantic feelings.
+
+I had been thinking about expressing my feelings for quite some time. It was not an impulsive decision.
+
+With only a few months of college remaining, I wanted to be honest rather than leave my feelings unspoken.
+
+I wasn't expecting an immediate commitment. I simply wanted to understand where I stood.
+
+When we talked, she explained that she was single but wasn't ready for a relationship. Her previous experiences had influenced how she approached relationships.
+
+She also explained that she didn't have romantic feelings for me and didn't want me to wait for her.
+
+I respected her honesty.
+
+When I received her response, I was spending time with friends during a photography outing. Surprisingly, I felt calm because I had finally received the clarity I wanted.
+
+My brief response wasn't an expression of anger. I was occupied at that moment, and I had received an honest answer.
+
+Later, I also shared some personal thoughts about emotional independence and healing. Those were my own reflections, not attempts to question her decision.
+
+Looking back, I don't regret expressing my feelings.
+
+I was honest about something meaningful to me, and she was honest about her feelings.
+
+I believe that romantic feelings not being mutual don't necessarily have to erase the respect or friendship between two people.
+
+At the same time, I want to focus on my own life, ambitions, responsibilities, and mental peace.
+
+I don't need to predict what happens next.
+
+I expressed what I genuinely felt, received an honest answer, and accepted it.
+
+**Final Reflection:**
+
+> "I wasn't asking for a promise. I was asking for clarity."`
+  },
+  {
+    id: 'entry-friends-food-memories',
+    sort_order: 18,
+    title: 'A Day Well Spent — Friends, Food & Memories',
+    subtitle: 'Sometimes, the simplest days become the happiest memories.',
+    date: 'October 30, 2026',
+    mood: 'Happy, Relaxed',
+    category: 'Happy Memories / Daily Life',
+    createdAt: new Date('2026-10-30T19:00:00').getTime(),
+    tags: ['friends', 'memories', 'photography', 'beach', 'food'],
+    content: `Today was genuinely a good day.
+
+I spent some quality time with my friends, including Nimisha and Dhrupan.
+
+We talked, laughed, took photographs, and enjoyed being together.
+
+Initially, we planned to visit Love Sugar, but things didn't work out as expected.
+
+So we changed our plans and headed to Kaifan for Mandi.
+
+One of the funniest moments involved Nimisha.
+
+At first, she kept saying that she wasn't going to eat Mandi. But once we got there, she started eating and enjoying it.
+
+It became one of the funniest memories of the day.
+
+After lunch, we went to the beach.
+
+We spent time talking, enjoying the surroundings, having snacks, and taking photographs and videos.
+
+There were plenty of jokes, laughter, and funny moments.
+
+Later, we shared our pictures and videos and posted some photographs.
+
+Eventually, we returned home after a really enjoyable outing.
+
+Looking back, it was a simple day, but one filled with good memories.
+
+Good food, great company, photographs, laughter, and time spent together made it special.
+
+**Final Reflection:**
+
+> "Sometimes, the simplest days become the happiest memories."`
+  },
+  {
+    id: 'entry-anjali-suresh-new-connection',
+    sort_order: 19,
+    title: 'Anjali Suresh — A New Connection',
+    subtitle: 'Not every new connection needs an immediate destination. Sometimes, getting to know someone is enough.',
+    date: 'October 30, 2026',
+    mood: 'Open-minded, Curious, Calm',
+    category: 'Personal Life / Friendships',
+    createdAt: new Date('2026-10-30T20:00:00').getTime(),
+    tags: ['anjali', 'friendship', 'connections', 'reflection'],
+    content: `Ajmal suggested that I get to know Anjali Suresh.
+
+I'm open to meeting her and having conversations, but I don't want to approach this with immediate romantic expectations.
+
+My intention is simply to get to know her as a person.
+
+I believe genuine connections develop through conversations, mutual understanding, and time.
+
+I don't want to rush into a relationship without understanding someone's personality, values, and interests.
+
+For now, friendship is the starting point.
+
+I don't know whether it will develop into anything more, and I don't need to decide that immediately.
+
+If we connect naturally and there is mutual interest, things can develop at their own pace.
+
+If not, that's completely fine too.
+
+What matters to me is approaching a new connection without pressure or unnecessary expectations.
+
+**Final Reflection:**
+
+> "Not every new connection needs an immediate destination. Sometimes, getting to know someone is enough."`
+  },
+  {
+    id: 'entry-sherin-personal-reflection',
+    sort_order: 20,
+    title: 'Sherin — Personal Reflection',
+    subtitle: 'Awaiting personal reflection and thoughts.',
+    date: 'October 31, 2026',
+    mood: 'Reflective',
+    category: 'Personal Life',
+    createdAt: new Date('2026-10-31T10:00:00').getTime(),
+    tags: ['sherin', 'draft', 'pending'],
+    content: `*Awaiting personal reflection and thoughts.*`
   }
 ]

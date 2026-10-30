@@ -36,15 +36,22 @@ export function App() {
       try {
         const parsed = JSON.parse(saved)
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Always ensure the authentic full Mission 2027 entry is present
-          const hasMission2027 = parsed.some((item: JournalEntry) => item.title === 'Mission 2027')
-          if (hasMission2027) {
-            return parsed.map((item: JournalEntry) =>
-              item.title === 'Mission 2027' ? INITIAL_ENTRIES[0] : item
-            )
-          } else {
-            return [INITIAL_ENTRIES[0], ...parsed]
+          // Check if the consolidated entries exist; merge any missing ones by ID
+          const existingIds = new Set(parsed.map((e: JournalEntry) => e.id))
+          const hasConsolidated = INITIAL_ENTRIES.some((e) => existingIds.has(e.id))
+          if (!hasConsolidated || existingIds.size < INITIAL_ENTRIES.length) {
+            const uniqueMap = new Map<string, JournalEntry>()
+            INITIAL_ENTRIES.forEach((item) => uniqueMap.set(item.id, item))
+            parsed.forEach((item: JournalEntry) => {
+              if (item.id !== 'entry-mission-2027') {
+                uniqueMap.set(item.id, item)
+              }
+            })
+            const combined = Array.from(uniqueMap.values())
+            localStorage.setItem('vaishh_entries', JSON.stringify(combined))
+            return combined
           }
+          return parsed
         }
       } catch {
         // Fall back to initial entries

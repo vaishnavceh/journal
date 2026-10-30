@@ -23,6 +23,7 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
   const [subtitle, setSubtitle] = useState('')
   const [content, setContent] = useState('')
   const [date, setDate] = useState('')
+  const [category, setCategory] = useState('Life & Reflections')
   const [tagsInput, setTagsInput] = useState('')
   const [viewMode, setViewMode] = useState<EditorViewMode>('wide')
   const [, setAudioTick] = useState(0)
@@ -42,6 +43,7 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
       setSubtitle(initialEntry.subtitle || '')
       setContent(initialEntry.content)
       setDate(initialEntry.date)
+      setCategory(initialEntry.category || 'Life & Reflections')
       setTagsInput(initialEntry.tags?.join(', ') || '')
     } else {
       const draft = localStorage.getItem('vaishh_journal_draft')
@@ -52,6 +54,7 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
           setSubtitle(parsed.subtitle || '')
           setContent(parsed.content || '')
           setDate(parsed.date || formatEntryDate())
+          setCategory(parsed.category || 'Life & Reflections')
           setTagsInput(parsed.tagsInput || '')
         } catch {
           setDate(formatEntryDate())
@@ -61,6 +64,7 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
         setSubtitle('')
         setContent('')
         setDate(formatEntryDate())
+        setCategory('Life & Reflections')
         setTagsInput('')
       }
     }
@@ -71,13 +75,13 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
     if (!initialEntry && isOpen) {
       setSavedStatus('saving...')
       const timeout = setTimeout(() => {
-        const draft = { title, subtitle, content, date, tagsInput }
+        const draft = { title, subtitle, content, date, category, tagsInput }
         localStorage.setItem('vaishh_journal_draft', JSON.stringify(draft))
         setSavedStatus('saved to disk')
       }, 500)
       return () => clearTimeout(timeout)
     }
-  }, [title, subtitle, content, date, tagsInput, initialEntry, isOpen])
+  }, [title, subtitle, content, date, category, tagsInput, initialEntry, isOpen])
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -109,6 +113,7 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
       subtitle: subtitle.trim(),
       content: content.trim(),
       date: date.trim() || formatEntryDate(),
+      category: category.trim() || 'Life & Reflections',
       tags
     })
 
@@ -244,6 +249,22 @@ export const FullPageEditor: React.FC<FullPageEditorProps> = ({
                 className="bg-transparent border-b border-dashed border-stone-300 dark:border-stone-700 outline-none text-stone-700 dark:text-stone-300 w-32 pb-0.5"
                 title="Edit thought date"
               />
+              <span className="text-stone-300 dark:text-stone-700">•</span>
+              <span>COLLECTION:</span>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="bg-transparent border-b border-dashed border-stone-300 dark:border-stone-700 outline-none text-stone-700 dark:text-stone-300 cursor-pointer pb-0.5 text-xs font-mono-meta"
+              >
+                <option value="Life & Reflections" className="dark:bg-stone-900">Life & Reflections</option>
+                <option value="Health & Discipline" className="dark:bg-stone-900">Health & Discipline</option>
+                <option value="Relationships" className="dark:bg-stone-900">Relationships</option>
+                <option value="Faith & Inner Peace" className="dark:bg-stone-900">Faith & Inner Peace</option>
+                <option value="College Life" className="dark:bg-stone-900">College Life</option>
+                <option value="Projects & Creativity" className="dark:bg-stone-900">Projects & Creativity</option>
+                <option value="Mission 2027" className="dark:bg-stone-900">Mission 2027</option>
+                <option value="Letters to Myself" className="dark:bg-stone-900">Letters to Myself</option>
+              </select>
             </div>
 
             <div className="flex items-center gap-4">

@@ -2,9 +2,228 @@ import type { JournalEntry } from '../types'
 
 export const INITIAL_ENTRIES: JournalEntry[] = [
   {
-    id: 'entry-mission-2027',
-    title: 'Mission 2027',
+    id: 'entry-01-pressure-growing-up',
+    title: 'The Pressure of Growing Up',
+    subtitle: 'On the weight of expectations and learning to move past guilt.',
+    date: 'October 19, 2026',
+    category: 'Life & Reflections',
+    createdAt: new Date('2026-10-19T20:00:00').getTime(),
+    tags: ['family', 'college', 'responsibility', 'personal-growth'],
+    content: `I turned 21 recently, and lately there is a persistent feeling that I am not moving fast enough, or doing enough with my life.
+
+I am an engineering student, but academics haven't been a smooth run. There are still subjects I need to clear, backlogs that hang over my head like an unfinished sentence. At home, when conversations steer toward college, exams, and results, a familiar heaviness settles in my chest. My parents have given me so much, sacrificing their own comfort to support my education and well-being. Knowing that, and looking at where I currently stand, brings an acute sense of guilt.
+
+For a long time, I mistook guilt for progress. I thought that by feeling bad about my mistakes, I was somehow paying a debt. But guilt is passive; it keeps you frozen in self-reproach while the days slip away. What my parents actually deserve isn't my remorse—it is my effort. They deserve to see me clear my papers, complete my degree, and step into financial independence.
+
+I want to become a pillar my family can genuinely depend on. Not out of pressure, but out of love and gratitude. To reach that point, I have to stop staring backward at what went wrong and start taking responsibility for my future.
+
+> "I cannot change yesterday's decisions, but I can take responsibility for tomorrow's."`
+  },
+  {
+    id: 'entry-02-taking-care-of-myself',
+    title: 'Learning to Take Care of Myself',
+    subtitle: 'Building sustainable discipline with my body, sleep, and routine.',
+    date: 'October 25, 2026',
+    category: 'Health & Discipline',
+    createdAt: new Date('2026-10-25T08:30:00').getTime(),
+    tags: ['health', 'fitness', 'sleep', 'habits', 'self-improvement'],
+    content: `Over the past several months, my weight has fluctuated around 96 to 103 kg. At 176 cm tall and 21 years old, I can feel the physical cost of carrying that weight. My energy levels dip, my movement feels heavy, and my diagnosed disc bulge means I have to be especially careful about how I treat my spine and back.
+
+I had initially hoped to reach 80–85 kg by March 2027. But I am beginning to recognize that fixating on an aggressive deadline often invites extreme, unsustainable measures that end in burnout. Sustainable progress matters far more than a rushed target.
+
+Starting on October 25, I planned a 75-day challenge centered around clean eating, mindful portions, and intermittent fasting. The goal is simple: eliminate reckless snacking, cut down excessive sugar, and build healthy daily habits. Because of my back, heavy lifting or reckless workouts are out of the question; my focus must be on regular walks, core stability, and respecting my physical limitations.
+
+Alongside nutrition, I've noticed how strongly my sleep schedule influences the rest of my day. When I sleep late, my routine becomes difficult. Waking up groggy ruins my discipline, which in turn leads to poor food choices. Health is not an isolated workout—it is an ecosystem of sleep, food, and daily rhythm.
+
+> "Discipline is not about having a perfect day. It's about returning to the right path."`
+  },
+  {
+    id: 'entry-03-relationship-patterns',
+    title: 'Understanding My Relationship Patterns',
+    subtitle: 'Examining why I fall too fast and how to build emotional maturity.',
+    date: 'October 30, 2026',
+    category: 'Relationships',
+    createdAt: new Date('2026-10-30T14:00:00').getTime(),
+    tags: ['attachment', 'relationships', 'self-awareness', 'emotions'],
+    content: `Looking back over the past few years, romantic disappointment is not an unfamiliar visitor. It has happened several times—perhaps ten, twelve, or even more. When a pattern repeats that often, it is no longer about bad luck; it is a signal to look closely at myself.
+
+I have noticed that I sometimes become attracted to someone after only a few good conversations. When someone speaks kindly to me, I may begin imagining them as a potential partner before I even know who they truly are. I become emotionally invested before knowing whether the feelings are mutual.
+
+This leads directly into reply anxiety. When a message is left unread or a response takes hours, it affects my mood. That is an exhausting way to live, and it isn't healthy for anyone involved.
+
+I've also noticed that I sometimes develop feelings for people who share difficult emotional experiences. When I hear about their struggles, I catch myself imagining how I would care for them if I were their partner. But I need to understand whether I am attracted to the person or to the idea of being important in their life.
+
+I previously had a relationship that lasted approximately one month. The other person said it didn't feel like a relationship to her. That was hard to hear, but I recognize that I may have contributed to problems in that relationship. I want to learn communication, patience, emotional independence, and how to maintain a healthy relationship.
+
+> "Understanding someone's pain doesn't automatically mean we're meant to be together."`
+  },
+  {
+    id: 'entry-04-anaswara-choosing-clarity',
+    title: 'Anaswara: Choosing Clarity',
+    subtitle: 'The relief of an honest answer over prolonged ambiguity.',
+    date: 'October 30, 2026',
+    category: 'Relationships',
+    createdAt: new Date('2026-10-30T17:30:00').getTime(),
+    tags: ['anaswara', 'rejection', 'acceptance', 'college-life'],
+    content: `Over the past weeks, I developed romantic feelings for Anaswara.
+
+On October 29, seeing her with another guy made me freeze and question the situation. That moment forced me to confront a dilemma: I could either continue lingering in passive speculation, or I could ask for clarity and accept whatever answer followed. I chose clarity. I told her that I couldn't see her only as a friend and that I considered her a potential partner.
+
+Today, she gave me her response. She explained that she wasn't interested in pursuing a relationship right now, that previous personal experiences had affected her feelings toward relationships, and that she didn't have romantic feelings for me. She made it clear that she didn't want me to wait.
+
+When she gave me that response, I was at the beach with friends, involved in a photography shoot. The timing was almost poetic. I was occupied and surprisingly calm. My mind simply registered: *She doesn't feel that way. That is her truth, and you have your own life to live.*
+
+I responded briefly, not because I wanted to hurt her, but because I was busy and had received the clarity I requested. Tonight, in the quiet of my room, I don't know whether some emotions will return later. But I know that I need to respect her decision and continue living my life.
+
+> "A clear answer can be painful, but uncertainty can keep us waiting indefinitely."`
+  },
+  {
+    id: 'entry-05-anjali-possibility-not-plan',
+    title: 'Anjali: A Possibility, Not a Plan',
+    subtitle: 'Resisting the urge to replace one possibility with another.',
+    date: 'October 30, 2026',
+    category: 'Relationships',
+    createdAt: new Date('2026-10-30T18:45:00').getTime(),
+    tags: ['anjali', 'ajmal', 'friendship', 'self-awareness'],
+    content: `Earlier today, my friend Ajmal suggested that I get to know Anjali from the Architecture department. He had also expressed doubts in the past about whether a relationship with Anaswara would work. Ajmal has made observations before that turned out to be accurate, so I value his perspective.
+
+He thinks Anjali seems like a good person based on what he has observed. However, he made it clear that he doesn't know her well enough to guarantee what she's like, and suggested that I get to know her myself and then tell him what I think.
+
+I've seen Anjali in person, but I don't know her personally. In the past, my instinct might have been to latch onto this as a romantic possibility. But I want to avoid turning another person into a romantic projection before getting to know them.
+
+If an opportunity to talk naturally arises, I will approach it without expectations. I don't want to treat Anjali as a replacement for Anaswara. Getting to know someone should be unhurried and genuine.
+
+> "Get to know the person before falling for the possibility."`
+  },
+  {
+    id: 'entry-06-way-back-to-peace',
+    title: 'Finding My Way Back to Peace',
+    subtitle: 'Remembering the sanctuary of faith and quiet rituals.',
+    date: 'October 30, 2026',
+    category: 'Faith & Inner Peace',
+    createdAt: new Date('2026-10-30T19:15:00').getTime(),
+    tags: ['spirituality', 'god', 'temple', 'peace', 'reflection'],
+    content: `I've always believed in God, but my connection to that faith has changed over time.
+
+My local temple and its traditions have always been personally meaningful to me. During ninth and tenth standard, I used to visit the temple regularly. I remember feeling a genuine, lasting peace during that period. My thoughts were mostly about studies, my own interests, and my faith. I wasn't constantly anxious about relationships or outside validation.
+
+Over time, my routine changed, and I stopped visiting as regularly. With that change, a lingering restlessness settled in.
+
+When disappointments happen repeatedly in life, I sometimes wonder whether they are lessons from God—a quiet reminder saying: *At least now, focus on your own life and what truly grounds you.* I don't know the answer with certainty, but I want to reconnect with prayer, spirituality, and the habits that once brought me stillness.
+
+> "Sometimes what I'm searching for outside is a sense of peace I once knew within myself."`
+  },
+  {
+    id: 'entry-07-crob-beyond-just-a-club',
+    title: 'CROB: Beyond Just a Club',
+    subtitle: 'Reflections on leadership, belonging, and rebuilding club culture.',
+    date: 'October 30, 2026',
+    category: 'College Life',
+    createdAt: new Date('2026-10-30T19:40:00').getTime(),
+    tags: ['crob', 'robotics', 'leadership', 'teamwork', 'communication'],
+    content: `I serve as a fourth-year advisor to the Centre for Robotics (CROB). During a recent meeting, only two fourth-year advisors were present.
+
+Sitting in that room, I noticed a significant communication gap among the members. The sense of bonding and interaction I always associated with CROB seemed to be missing. To me, a club has never been just about technical projects, competitions, and events. It's also about friendships, teamwork, shared experiences, and belonging.
+
+I spoke strongly during the meeting because I was frustrated by what I observed. I wanted members to understand that honest communication is essential. At the same time, I need to reflect on how I expressed my concerns. As an advisor, my responsibility is not only to identify problems but also to help solve them constructively. I want the next generation of CROB members to experience the same sense of belonging that made the club meaningful to me.
+
+> "A club is remembered not only for what it achieved, but also for how it brought people together."`
+  },
+  {
+    id: 'entry-08-things-i-love-building',
+    title: 'The Things I Love Building',
+    subtitle: 'Finding joy in research, code, visual design, and tournament craft.',
+    date: 'October 29, 2026',
+    category: 'Projects & Creativity',
+    createdAt: new Date('2026-10-29T18:00:00').getTime(),
+    tags: ['engineering', 'programming', 'design', 'photography', 'projects'],
+    content: `I am an electrical engineering student at TKM College of Engineering, and working on real projects is where I regain my energy.
+
+Recently, I've been working on a research project involving short-term electricity load forecasting. Our proposed model, PatchTCN-TST, combines temporal convolutional networks and Transformer-based techniques. We are currently preparing to develop this work into a conference paper.
+
+Outside academics, I enjoy creating things. I worked on MINARAM CUP, an eFootball tournament for TKM students, managing everything from tournament fixtures and standings to website development and branding. I also enjoy graphic design, photography, and creating digital media. I've worked on college election designs and explored building websites for voting systems and attendance management.
+
+I enjoy transforming ideas into working projects. These experiences remind me that my interests extend far beyond academics or relationships, and I want to keep improving my technical and creative skills.
+
+> "Some of my best learning experiences begin with an idea I simply decide to try."`
+  },
+  {
+    id: 'entry-09-mission-2027-becoming-myself',
+    title: 'Mission 2027: Becoming Myself',
+    subtitle: 'A one-year commitment to self-respect, health, and quiet momentum.',
+    date: 'October 30, 2026',
+    category: 'Mission 2027',
+    createdAt: new Date('2026-10-30T20:30:00').getTime(),
+    tags: ['mission-2027', 'goals', 'discipline', 'personal-growth'],
+    content: `Today marks the official beginning of Mission 2027.
+
+I've decided to spend approximately one year focusing on myself rather than actively chasing romantic relationships. I still want love and companionship, but I don't want my emotional stability to depend on romantic attention.
+
+My goals for this period are clear:
+- Improving my physical health and working toward 80–85 kg in a sustainable way.
+- Building a consistent sleep schedule to protect my mornings.
+- Reading at least ten pages daily and learning something useful every day.
+- Limiting recreational screen time to five hours and reducing mindless scrolling.
+- Developing my engineering, programming, and career skills.
+- Improving my social confidence and spending meaningful time with friends and family.
+- Reconnecting with God and finding peace through prayer and reflection.
+- Working toward financial independence and emotional maturity.
+
+I know that changing everything immediately isn't realistic. I want to focus on sustainable progress. Mission 2027 isn't about proving something to someone who rejected me; it's about becoming someone I can respect.
+
+> "I'm not putting my life on hold until someone loves me."`
+  },
+  {
+    id: 'entry-10-why-i-created-vaishh',
+    title: 'Why I Created vaishh.',
+    subtitle: 'Building a private digital sanctuary before the world gets loud.',
+    date: 'October 30, 2026',
+    category: 'Life & Reflections',
+    createdAt: new Date('2026-10-30T21:00:00').getTime(),
+    tags: ['journaling', 'memories', 'vaishh', 'self-discovery'],
+    content: `I've had many conversations about my life, relationships, college, health, faith, and future. Over time, I realized that I don't want those thoughts to disappear into old conversations or get lost in endless chat histories. I want somewhere to preserve them.
+
+That's why I created my personal journal website, **vaishh.**
+
+I want it to be minimal, peaceful, and private. A place where I can write without worrying about what others think. Some entries will be happy; others will describe confusion, disappointment, or mistakes. I want to preserve them all.
+
+One day, I want to look back and understand how much I've changed. I want to remember the person I was before becoming the person I'm trying to be.
+
+> "I don't want to forget the process of becoming myself."`
+  },
+  {
+    id: 'entry-11-letter-to-my-future-self',
+    title: 'A Letter to My Future Self',
+    subtitle: 'A time capsule from age 21 to the man who reads this years from now.',
+    date: 'October 30, 2026',
+    category: 'Letters to Myself',
+    createdAt: new Date('2026-10-30T22:00:00').getTime(),
+    tags: ['future-self', 'mission-2027', 'personal-growth'],
+    content: `Dear future me,
+
+I am writing this to you on October 30, 2026. I am 21 years old, sitting in my room, trying to figure out where my life is headed.
+
+If you are reading this years from now, I hope you have found peace. But right now, things feel uncertain. I have academic responsibilities and backlogs to clear. I feel the weight of my family's expectations and my desire to make my parents proud. Today, I received a clear rejection from Anaswara—and while I took it calmly during a photography shoot at the beach, it forced me to reflect on my romantic patterns and my tendency to attach too quickly.
+
+My physical health needs attention, and my disc bulge reminds me to treat my body with care. I want to build a better routine, reconnect with God and the peace I used to feel at the temple, and keep investing in the things I love: engineering research, programming, photography, and creative projects.
+
+Tonight, I began Mission 2027. I hope that as you read this, you have become more disciplined, financially independent, and emotionally grounded. I hope you treat people with kindness and carry yourself with quiet confidence.
+
+Remember where you started, and remember the effort it took to become who you are.
+
+With love,
+
+vaishh.  
+October 30, 2026`
+  },
+  {
+    id: 'entry-mission-2027-raw',
+    title: 'Mission 2027 (Original Archive Notes)',
     subtitle: 'എന്റെ ജീവിതം, ബന്ധങ്ങൾ, വിശ്വാസം, സ്വയം തിരിച്ചറിവുകൾ',
+    date: 'October 30, 2026',
+    category: 'Archive',
+    createdAt: new Date('2026-10-30T10:00:00').getTime(),
+    tags: ['mission-2027', 'archive', 'malayalam'],
     content: `### 1. എന്തുകൊണ്ടാണ് ഞാൻ Mission 2027 തുടങ്ങാൻ തീരുമാനിച്ചത്?
 
 ജീവിതത്തിൽ കുറേ കാര്യങ്ങൾ മാറ്റണമെന്ന് എനിക്ക് തോന്നിത്തുടങ്ങിയിട്ടുണ്ട്. പ്രത്യേകിച്ച് relationships, emotional attachment, പഠനം, ആരോഗ്യം, കരിയർ, ആത്മീയത എന്നിവയിൽ.
@@ -334,38 +553,6 @@ Doomscrolling-ന് പകരം നല്ല games കളിക്കാനു
 ---
 
 **October 30, 2026**  
-*The beginning of Mission 2027.*`,
-    date: '30 oct 2026',
-    createdAt: new Date('2026-10-30T10:00:00').getTime(),
-    tags: ['mission2027', 'self-discovery', 'goals', 'life']
-  },
-  {
-    id: 'entry-2',
-    title: 'things i wanted to say',
-    subtitle: 'some thoughts are better written.',
-    content: `Not everything needs to be spoken aloud.
-
-Sometimes, when words exit your mouth in haste, they lose their nuance. They get flattened by tone, hurried by conversations, or interrupted by noise.
-
-On paper—or across this quiet screen—thoughts have breathing room. You can untangle what you actually feel versus what you reacted to. You can find forgiveness for mistakes, gratitude for ordinary afternoons, and clarity in moments of confusion.
-
-Some thoughts aren't meant for everyone.
-Some thoughts are just meant for you and the blank page.`,
-    date: '29 oct 2026',
-    createdAt: new Date('2026-10-29T21:15:00').getTime(),
-    tags: ['reflections', 'writing']
-  },
-  {
-    id: 'entry-3',
-    title: 'the quiet hours',
-    subtitle: 'where clarity lives.',
-    content: `Late night has an entirely different frequency.
-
-When the world falls asleep and the notifications finally stop buzzing, there is an stillness in the air. That is usually when the mind does its best wandering.
-
-It is in these hours that the biggest ideas take shape. You realize what matters and what was just noise during the daylight. Tomorrow will bring its own challenges, but tonight, the room is still and the future feels wide open.`,
-    date: '24 oct 2026',
-    createdAt: new Date('2026-10-24T23:30:00').getTime(),
-    tags: ['thoughts', 'night']
+*The beginning of Mission 2027.*`
   }
 ]

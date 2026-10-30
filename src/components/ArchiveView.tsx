@@ -19,6 +19,14 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+
+  // Collect all unique collections
+  const allCategories = useMemo(() => {
+    const set = new Set<string>()
+    entries.forEach((e) => e.category && set.add(e.category))
+    return Array.from(set)
+  }, [entries])
 
   // Collect all unique tags
   const allTags = useMemo(() => {
@@ -39,10 +47,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         entry.date.toLowerCase().includes(q)
 
       const matchesTag = !selectedTag || entry.tags?.includes(selectedTag)
+      const matchesCategory = !selectedCategory || entry.category === selectedCategory
 
-      return matchesSearch && matchesTag
+      return matchesSearch && matchesTag && matchesCategory
     })
-  }, [entries, searchQuery, selectedTag])
+  }, [entries, searchQuery, selectedTag, selectedCategory])
 
   // Total words
   const totalWords = useMemo(() => {
@@ -57,7 +66,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
       {/* Archive Header */}
       <div className="pb-6 border-b border-stone-200/70 dark:border-stone-800/80">
         <h1 className="text-3xl sm:text-4xl font-serif-title font-medium text-stone-900 dark:text-stone-100">
-          archive.
+          archive & collections.
         </h1>
         <p className="text-xs font-mono-meta text-stone-400 dark:text-stone-500 mt-2">
           {entries.length} {entries.length === 1 ? 'thought' : 'thoughts'} recorded • {totalWords} words total
@@ -67,34 +76,68 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         <div className="mt-6">
           <input
             type="text"
-            placeholder="Search thoughts, ideas, dates, or Malayalam words..."
+            placeholder="Search thoughts, collections, dates, or ideas..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full py-3 px-4 text-sm font-mono-meta bg-stone-100/60 dark:bg-stone-900/60 rounded-xl border border-stone-300/70 dark:border-stone-800/80 outline-none text-stone-800 dark:text-stone-200 placeholder:text-stone-400 shadow-2xs"
           />
         </div>
 
+        {/* Collections filter */}
+        {allCategories.length > 0 && (
+          <div className="mt-5 space-y-1.5">
+            <span className="text-[10px] font-mono-meta uppercase tracking-wider text-stone-400 block">
+              collections
+            </span>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className={`px-3 py-1 rounded-full text-xs font-mono-meta cursor-pointer transition-colors ${
+                  selectedCategory === null
+                    ? 'bg-stone-800 text-stone-100 dark:bg-stone-200 dark:text-stone-900 font-medium'
+                    : 'bg-stone-200/50 dark:bg-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                }`}
+              >
+                all collections
+              </button>
+              {allCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
+                  className={`px-3 py-1 rounded-full text-xs font-mono-meta cursor-pointer transition-colors ${
+                    selectedCategory === cat
+                      ? 'bg-stone-800 text-stone-100 dark:bg-stone-200 dark:text-stone-900 font-medium'
+                      : 'bg-stone-200/50 dark:bg-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Tag pills */}
         {allTags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-stone-200/40 dark:border-stone-800/40">
             <button
               onClick={() => setSelectedTag(null)}
-              className={`px-3 py-1 rounded-full text-xs font-mono-meta cursor-pointer transition-colors ${
+              className={`px-2.5 py-0.5 rounded text-[11px] font-mono-meta cursor-pointer transition-colors ${
                 selectedTag === null
-                  ? 'bg-stone-800 text-stone-100 dark:bg-stone-200 dark:text-stone-900'
-                  : 'bg-stone-200/50 dark:bg-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                  ? 'text-stone-900 dark:text-stone-100 font-medium underline underline-offset-4'
+                  : 'text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
               }`}
             >
-              all ({entries.length})
+              all tags
             </button>
             {allTags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-                className={`px-3 py-1 rounded-full text-xs font-mono-meta cursor-pointer transition-colors ${
+                className={`px-2.5 py-0.5 rounded text-[11px] font-mono-meta cursor-pointer transition-colors ${
                   selectedTag === tag
-                    ? 'bg-stone-800 text-stone-100 dark:bg-stone-200 dark:text-stone-900'
-                    : 'bg-stone-200/50 dark:bg-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                    ? 'bg-stone-700 text-stone-100 dark:bg-stone-300 dark:text-stone-900'
+                    : 'text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
                 }`}
               >
                 #{tag}
@@ -107,7 +150,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
       {/* Entries List */}
       {filteredEntries.length === 0 ? (
         <div className="py-16 text-center text-base font-serif-title italic text-stone-400">
-          no thoughts match your search.
+          no thoughts match your search or filter.
         </div>
       ) : (
         <div className="divide-y-0">

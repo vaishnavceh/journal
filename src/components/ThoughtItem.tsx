@@ -13,9 +13,17 @@ export const ThoughtItem: React.FC<ThoughtItemProps> = ({ entry, onClick }) => {
       className="group py-6 cursor-pointer select-none transition-colors"
     >
       <div className="flex items-center justify-between mb-1.5">
-        <time className="text-xs font-mono-meta tracking-wider text-stone-400 dark:text-stone-500 lowercase">
-          {entry.date}
-        </time>
+        <div className="flex items-center gap-2 text-xs font-mono-meta text-stone-400 dark:text-stone-500">
+          <time className="tracking-wider">{entry.date}</time>
+          {entry.category && (
+            <>
+              <span>•</span>
+              <span className="text-[11px] text-stone-500 dark:text-stone-400">
+                {entry.category}
+              </span>
+            </>
+          )}
+        </div>
         {entry.tags && entry.tags.length > 0 && (
           <div className="flex items-center gap-1.5">
             {entry.tags.slice(0, 2).map((t) => (

@@ -239,6 +239,12 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
       <div className="mb-10 text-center max-w-4xl mx-auto space-y-3">
         <div className="flex items-center justify-center gap-3 text-xs font-mono-meta text-stone-400 dark:text-stone-500">
           <span>{entry.date}</span>
+          {entry.category && (
+            <>
+              <span>•</span>
+              <span className="text-stone-500 dark:text-stone-400 font-medium">{entry.category}</span>
+            </>
+          )}
           <span>•</span>
           <span>{calculateReadingTime(entry.content)}</span>
           {entry.tags && entry.tags.length > 0 && (

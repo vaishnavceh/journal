@@ -191,104 +191,114 @@ export function App() {
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-200 selection:bg-stone-200 dark:selection:bg-stone-800">
       {/* Expansive Full Desktop Container */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-8 min-h-screen">
-        {/* Mobile Header (Hidden on Large Desktop) */}
-        <div className="block lg:hidden mb-6">
-          <Header
-            isDarkMode={isDarkMode}
-            onToggleTheme={() => setIsDarkMode((prev) => !prev)}
-            onNavigateHome={() => {
-              setActiveEntry(null)
-              setCurrentTab('journal')
-            }}
-          />
-        </div>
-
-        {/* Desktop 2-Column Editorial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Sticky Sidebar on Desktop */}
-          <div className="hidden lg:block lg:col-span-4">
-            <Sidebar
-              currentTab={activeEntry ? 'journal' : currentTab}
-              onSelectTab={(tab) => {
+        {activeEntry ? (
+          /* Full Stage Dedicated Reading Canvas */
+          <main className="w-full min-h-[85vh]">
+            <ReaderView
+              entry={activeEntry}
+              onBack={() => {
                 setActiveEntry(null)
-                setCurrentTab(tab)
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              isDarkMode={isDarkMode}
-              onToggleTheme={() => setIsDarkMode((prev) => !prev)}
-              onNavigateHome={() => {
-                setActiveEntry(null)
-                setCurrentTab('journal')
+              onEdit={(entry) => {
+                setEditingEntry(entry)
+                setIsEditorOpen(true)
               }}
-              totalEntries={entries.length}
+              onDelete={handleDeleteEntry}
             />
-          </div>
-
-          {/* Right Column: Main Content Stage */}
-          <main className="lg:col-span-8 min-h-[80vh]">
-            {activeEntry ? (
-              <ReaderView
-                entry={activeEntry}
-                onBack={() => setActiveEntry(null)}
-                onEdit={(entry) => {
-                  setEditingEntry(entry)
-                  setIsEditorOpen(true)
-                }}
-                onDelete={handleDeleteEntry}
-              />
-            ) : currentTab === 'journal' ? (
-              <>
-                {/* Greeting */}
-                <Greeting
-                  userName={userName}
-                  onUpdateUserName={handleUpdateUserName}
-                />
-
-                {/* Core Convictions & Emotional Highlights */}
-                <HighlightsBanner
-                  onOpenEntryById={(id) => {
-                    const match = entries.find(
-                      (e) => e.id === id || (id.includes('mission') && e.title.includes('Mission 2027'))
-                    )
-                    if (match) {
-                      setActiveEntry(match)
-                      window.scrollTo({ top: 0, behavior: 'smooth' })
-                    }
-                  }}
-                  entries={entries}
-                />
-
-                {/* + write something (Artistic wide studio launcher) */}
-                <WriteButton
-                  onClick={() => {
-                    setEditingEntry(null)
-                    setIsEditorOpen(true)
-                  }}
-                />
-
-                {/* RECENT THOUGHTS list */}
-                <RecentThoughts
-                  entries={entries}
-                  onSelectEntry={(entry) => setActiveEntry(entry)}
-                  onWriteNew={() => {
-                    setEditingEntry(null)
-                    setIsEditorOpen(true)
-                  }}
-                />
-              </>
-            ) : currentTab === 'archive' ? (
-              <ArchiveView
-                entries={entries}
-                onSelectEntry={(entry) => setActiveEntry(entry)}
-                onExport={handleExportBackup}
-                onImport={handleImportBackup}
-                onResetDefaults={handleResetDefaults}
-              />
-            ) : (
-              <AboutView userName={userName} />
-            )}
           </main>
-        </div>
+        ) : (
+          <>
+            {/* Mobile Header (Hidden on Large Desktop) */}
+            <div className="block lg:hidden mb-6">
+              <Header
+                isDarkMode={isDarkMode}
+                onToggleTheme={() => setIsDarkMode((prev) => !prev)}
+                onNavigateHome={() => {
+                  setActiveEntry(null)
+                  setCurrentTab('journal')
+                }}
+              />
+            </div>
+
+            {/* Desktop 2-Column Editorial Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+              {/* Left Column: Sticky Sidebar on Desktop */}
+              <div className="hidden lg:block lg:col-span-4">
+                <Sidebar
+                  currentTab={currentTab}
+                  onSelectTab={(tab) => {
+                    setActiveEntry(null)
+                    setCurrentTab(tab)
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  isDarkMode={isDarkMode}
+                  onToggleTheme={() => setIsDarkMode((prev) => !prev)}
+                  onNavigateHome={() => {
+                    setActiveEntry(null)
+                    setCurrentTab('journal')
+                  }}
+                  totalEntries={entries.length}
+                />
+              </div>
+
+              {/* Right Column: Main Content Stage */}
+              <main className="lg:col-span-8 min-h-[80vh]">
+                {currentTab === 'journal' ? (
+                  <>
+                    {/* Greeting */}
+                    <Greeting
+                      userName={userName}
+                      onUpdateUserName={handleUpdateUserName}
+                    />
+
+                    {/* Core Convictions & Emotional Highlights */}
+                    <HighlightsBanner
+                      onOpenEntryById={(id) => {
+                        const match = entries.find(
+                          (e) => e.id === id || (id.includes('mission') && e.title.includes('Mission 2027'))
+                        )
+                        if (match) {
+                          setActiveEntry(match)
+                          window.scrollTo({ top: 0, behavior: 'smooth' })
+                        }
+                      }}
+                      entries={entries}
+                    />
+
+                    {/* + write something (Artistic wide studio launcher) */}
+                    <WriteButton
+                      onClick={() => {
+                        setEditingEntry(null)
+                        setIsEditorOpen(true)
+                      }}
+                    />
+
+                    {/* RECENT THOUGHTS list */}
+                    <RecentThoughts
+                      entries={entries}
+                      onSelectEntry={(entry) => setActiveEntry(entry)}
+                      onWriteNew={() => {
+                        setEditingEntry(null)
+                        setIsEditorOpen(true)
+                      }}
+                    />
+                  </>
+                ) : currentTab === 'archive' ? (
+                  <ArchiveView
+                    entries={entries}
+                    onSelectEntry={(entry) => setActiveEntry(entry)}
+                    onExport={handleExportBackup}
+                    onImport={handleImportBackup}
+                    onResetDefaults={handleResetDefaults}
+                  />
+                ) : (
+                  <AboutView userName={userName} />
+                )}
+              </main>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Mobile Bottom Navigation Pill (Visible on mobile/tablet) */}

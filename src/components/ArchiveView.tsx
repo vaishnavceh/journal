@@ -43,6 +43,8 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         !q ||
         entry.title.toLowerCase().includes(q) ||
         entry.subtitle?.toLowerCase().includes(q) ||
+        entry.mood?.toLowerCase().includes(q) ||
+        entry.category?.toLowerCase().includes(q) ||
         entry.content.toLowerCase().includes(q) ||
         entry.date.toLowerCase().includes(q)
 
@@ -166,7 +168,15 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
 
       {/* Backup & Management Tools */}
       <div className="pt-8 border-t border-stone-200/60 dark:border-stone-800/60 flex flex-wrap items-center justify-between gap-4 text-xs font-mono-meta text-stone-400">
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center gap-6">
+          <button
+            onClick={() => window.print()}
+            className="hover:text-stone-800 dark:hover:text-stone-200 underline underline-offset-4 cursor-pointer flex items-center gap-1.5"
+            title="Print all journal entries (book format)"
+          >
+            <span>🖨️</span>
+            <span>print all entries</span>
+          </button>
           <button
             onClick={onExport}
             className="hover:text-stone-800 dark:hover:text-stone-200 underline underline-offset-4 cursor-pointer"

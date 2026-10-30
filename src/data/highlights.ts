@@ -2,75 +2,93 @@ import type { Highlight } from '../types'
 
 export const DEFAULT_HIGHLIGHTS: Highlight[] = [
   {
-    id: 'hl-1',
-    quote: 'Mission 2027 എന്നത് ആരെയെങ്കിലും മറക്കാനുള്ള ശ്രമം മാത്രമല്ല. എന്നെ തന്നെ കൂടുതൽ മനസ്സിലാക്കാനും എന്റെ ജീവിതം മെച്ചപ്പെടുത്താനുമുള്ള തീരുമാനമാണ്.',
-    translation: "Mission 2027 isn't just about trying to forget someone. It is a decision to deeply understand myself and elevate my life.",
-    context: 'Mission 2027 // §15 ഭാവിയിലെ എനിക്ക്',
-    entryId: 'entry-mission-2027',
-    date: '30 oct 2026',
-    tag: 'conviction'
+    id: 'hl-m2027-01',
+    quote: 'I am not trying to become perfect. I am trying to become better.',
+    translation: 'ഞാൻ പെർഫെക്റ്റ് ആകാൻ ശ്രമിക്കുകയല്ല, ഓരോ ദിവസവും മെച്ചപ്പെട്ട ഒരു വ്യക്തിയാകാൻ ശ്രമിക്കുകയാണ്.',
+    context: 'Mission 2027: The Beginning // §Commitment',
+    entryId: 'mission-2027-entry-01',
+    date: '31 oct 2026',
+    tag: 'transformation'
   },
   {
-    id: 'hl-2',
-    quote: 'എനിക്ക് ഒരു നല്ല partner ആകണം. അതിന് മുമ്പ് എനിക്ക് സ്വന്തം ജീവിതത്തെ ഉത്തരവാദിത്തത്തോടെ കൈകാര്യം ചെയ്യാൻ കഴിയുന്ന ഒരു വ്യക്തിയാകണം.',
-    translation: 'I want to be a good partner. But before that, I must become a person who can handle their own life with accountability.',
-    context: 'Mission 2027 // §15 സ്വയം തിരിച്ചറിവ്',
-    entryId: 'entry-mission-2027',
-    date: '30 oct 2026',
-    tag: 'growth'
+    id: 'hl-m2027-02',
+    quote: 'Health first. Progress over perfection.',
+    translation: 'ആരോഗ്യത്തിനാണ് പ്രഥമ പരിഗണന. പെർഫെക്ഷനേക്കാൾ പ്രധാനം നിരന്തര പുരോഗതിയാണ്.',
+    context: 'Physical Transformation // §Reminder',
+    entryId: 'mission-2027-entry-02',
+    date: '31 oct 2026',
+    tag: 'health'
   },
   {
-    id: 'hl-3',
-    quote: 'ആ നിമിഷം എനിക്ക് തോന്നിയത് ജീവിതം ഒരാളിൽ മാത്രം ഒതുങ്ങുന്നതല്ല എന്നാണ്.',
-    translation: 'In that moment, I realized that life does not revolve around just one single person.',
-    context: 'Mission 2027 // §14 ഇപ്പോൾ മനസ്സിലുള്ളത്',
-    entryId: 'entry-mission-2027',
-    date: '30 oct 2026',
-    tag: 'perspective'
+    id: 'hl-m2027-03',
+    quote: "A good day often begins with a good night's sleep.",
+    translation: 'നല്ലൊരു ദിവസത്തിന്റെ ആരംഭം തലേന്നത്തെ നല്ലൊരു ഉറക്കത്തിലാണ്.',
+    context: 'Sleep and Daily Routine // §Rhythm',
+    entryId: 'mission-2027-entry-03',
+    date: '31 oct 2026',
+    tag: 'lifestyle'
   },
   {
-    id: 'hl-4',
-    quote: 'എനിക്ക് വേണ്ടത് ഒരു relationship status അല്ല. എനിക്ക് വേണ്ടത് സമാധാനമുള്ള ഒരു ജീവിതമാണ്.',
-    translation: 'What I need is not a relationship status. What I need is a life filled with peace.',
-    context: 'Mission 2027 // §15 ലക്ഷ്യബോധം',
-    entryId: 'entry-mission-2027',
-    date: '30 oct 2026',
+    id: 'hl-m2027-04',
+    quote: 'I want to control my habits instead of letting my habits control me.',
+    translation: 'ശീലങ്ങൾ എന്നെ നിയന്ത്രിക്കുന്നതിന് പകരം, ശീലങ്ങളെ നിയന്ത്രിക്കുന്ന ആളാകണം ഞാൻ.',
+    context: 'Digital Discipline // §Self-Control',
+    entryId: 'mission-2027-entry-04',
+    date: '31 oct 2026',
+    tag: 'discipline'
+  },
+  {
+    id: 'hl-m2027-05',
+    quote: 'Learn something every day, even if it is small.',
+    translation: 'വളരെ ചെറുതാണെങ്കിൽ പോലും ദിവസവും ഉപകാരപ്രദമായ എന്തെങ്കിലും പഠിക്കുക.',
+    context: 'Reading and Knowledge // §Growth',
+    entryId: 'mission-2027-entry-05',
+    date: '31 oct 2026',
+    tag: 'learning'
+  },
+  {
+    id: 'hl-m2027-06',
+    quote: 'My peace matters. So does my growth.',
+    translation: 'എന്റെ മാനസിക സമാധാനവും വളർച്ചയും എനിക്ക് തുല്യ പ്രാധാന്യമുള്ളതാണ്.',
+    context: 'Mental Peace & Emotional Independence',
+    entryId: 'mission-2027-entry-06',
+    date: '31 oct 2026',
     tag: 'peace'
   },
   {
-    id: 'hl-5',
-    quote: 'എനിക്ക് സ്നേഹം വേണ്ടെന്നല്ല. എനിക്ക് സ്നേഹിക്കാൻ അറിയില്ലെന്നുമല്ല. എന്നാൽ ആരെ, എപ്പോൾ, എങ്ങനെ സ്നേഹിക്കണം എന്നതിനെക്കുറിച്ച് കൂടുതൽ മനസ്സിലാക്കേണ്ടതുണ്ട്.',
-    translation: "It's not that I don't want love, nor that I don't know how to love. But I need to understand whom, when, and how to love.",
-    context: 'Mission 2027 // §14 സ്നേഹവും പക്വതയും',
-    entryId: 'entry-mission-2027',
-    date: '30 oct 2026',
-    tag: 'emotional'
+    id: 'hl-m2027-07',
+    quote: 'I can value someone without needing a romantic relationship with them.',
+    translation: 'ഒരു റൊമാന്റിക് ബന്ധം വേണമെന്ന നിർബന്ധമില്ലാതെ തന്നെ ഒരാളെ മനസ്സറിഞ്ഞ് പരിഗണിക്കാൻ എനിക്ക് സാധിക്കും.',
+    context: 'Relationship Break & Personal Boundaries',
+    entryId: 'mission-2027-entry-07',
+    date: '31 oct 2026',
+    tag: 'boundaries'
   },
   {
-    id: 'hl-6',
-    quote: "ഇത് ദൈവം എനിക്ക് തരുന്ന ഒരു പരീക്ഷണമാണോ? 'ഇനിയെങ്കിലും നന്നാവൂ, സ്വന്തം ജീവിതത്തിൽ ശ്രദ്ധിക്കൂ' എന്നൊരു സന്ദേശമാണോ ഇതിലൂടെ ലഭിക്കുന്നത്?",
-    translation: "Is this a test from God? A message saying: 'At least now, better yourself. Focus on your own life'?",
-    context: 'Mission 2027 // §10 ദൈവവിശ്വാസം',
-    entryId: 'entry-mission-2027',
-    date: '30 oct 2026',
+    id: 'hl-m2027-08',
+    quote: 'Stay connected to God. Stay grounded in life.',
+    translation: 'ദൈവവുമായി എപ്പോഴും ചേർന്നുനിൽക്കുക. ജീവിതത്തിൽ എപ്പോഴും വിനയത്തോടെ നിലയുറപ്പിക്കുക.',
+    context: 'God, Faith and Inner Peace',
+    entryId: 'mission-2027-entry-09',
+    date: '31 oct 2026',
     tag: 'faith'
   },
   {
-    id: 'hl-7',
-    quote: "Some thoughts aren't meant for everyone. Some thoughts are just meant for you and the blank page.",
-    translation: 'ചില ചിന്തകൾ എല്ലാവർക്കുമുള്ളതല്ല. അവ നിങ്ങൾക്കും ഈ ശൂന്യമായ താളിനും മാത്രമുള്ളതാണ്.',
-    context: 'things i wanted to say',
-    entryId: 'entry-2',
-    date: '29 oct 2026',
-    tag: 'reflection'
+    id: 'hl-m2027-09',
+    quote: 'Leadership is not just about position. It is about contribution.',
+    translation: 'നേതൃത്വം എന്നത് അധികാരസ്ഥാനമല്ല, അത് നമ്മൾ നൽകുന്ന ആത്മാർത്ഥമായ സംഭാവനയാണ്.',
+    context: 'Centre for Robotics (CROB) // §Advisory',
+    entryId: 'mission-2027-entry-12',
+    date: '31 oct 2026',
+    tag: 'leadership'
   },
   {
-    id: 'hl-8',
-    quote: 'Quiet compounding beats loud fireworks. The real changes happen in the ordinary Tuesdays and quiet late nights nobody claps for.',
-    translation: 'ശബ്ദമില്ലാത്ത സ്ഥിരോത്സാഹമാണ് വലിയ വെടിക്കെട്ടുകളേക്കാൾ മുന്നേറുന്നത്.',
-    context: 'vaishh principles',
-    entryId: 'entry-1',
-    date: 'principles',
-    tag: 'focus'
+    id: 'hl-m2027-10',
+    quote: 'I hope my future self is proud that I started.',
+    translation: 'തുടങ്ങാൻ കാണിച്ച ഈ ധൈര്യത്തിൽ ഭാവിയിലെ ഞാൻ അഭിമാനം കൊള്ളുമെന്ന് ഞാൻ പ്രതീക്ഷിക്കുന്നു.',
+    context: 'March 2027: Checkpoint // §Future Self',
+    entryId: 'mission-2027-entry-16',
+    date: '31 oct 2026',
+    tag: 'future'
   }
 ]

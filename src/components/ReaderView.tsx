@@ -42,7 +42,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
     const preludeLines: string[] = []
 
     for (const line of rawLines) {
-      const headingMatch = line.match(/^###\s+(.*)/)
+      const headingMatch = line.match(/^#{2,3}\s+(.*)/)
       if (headingMatch) {
         if (!hasEncounteredFirstHeading) {
           hasEncounteredFirstHeading = true
@@ -197,6 +197,14 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
         {/* Right: Actions */}
         <div className="flex items-center gap-4 text-xs font-mono-meta">
           <button
+            onClick={() => window.print()}
+            className="text-stone-400 hover:text-stone-800 dark:text-stone-500 dark:hover:text-stone-300 transition-colors cursor-pointer flex items-center gap-1"
+            title="Print or save this thought as PDF"
+          >
+            <span>🖨️</span>
+            <span>print</span>
+          </button>
+          <button
             onClick={handleCopy}
             className="text-stone-400 hover:text-stone-800 dark:text-stone-500 dark:hover:text-stone-300 transition-colors cursor-pointer"
           >
@@ -237,12 +245,28 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
 
       {/* Main Entry Title & Subtitle Banner */}
       <div className="mb-10 text-center max-w-4xl mx-auto space-y-3">
-        <div className="flex items-center justify-center gap-3 text-xs font-mono-meta text-stone-400 dark:text-stone-500">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-mono-meta text-stone-400 dark:text-stone-500">
+          {entry.collection && (
+            <>
+              <span className="uppercase tracking-wider font-semibold text-stone-600 dark:text-stone-300">
+                {entry.collection}
+              </span>
+              <span>•</span>
+            </>
+          )}
           <span>{entry.date}</span>
           {entry.category && (
             <>
               <span>•</span>
               <span className="text-stone-500 dark:text-stone-400 font-medium">{entry.category}</span>
+            </>
+          )}
+          {entry.mood && (
+            <>
+              <span>•</span>
+              <span className="px-2 py-0.5 rounded-full bg-stone-200/70 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300">
+                mood: {entry.mood.toLowerCase()}
+              </span>
             </>
           )}
           <span>•</span>
@@ -293,7 +317,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
                   title={p.title}
                 >
                   <span>§{idx + 1}</span>
-                  <span className="truncate max-w-32">{p.title.replace(/^\d+[\.\s]*/, '')}</span>
+                  <span className="truncate max-w-32">{p.title.replace(/^\d+[.\s]*/, '')}</span>
                 </button>
               )
             })}
@@ -301,9 +325,10 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
         </div>
       )}
 
-      {/* Content Canvas */}
-      {isBookMode && totalPages > 1 ? (
-        /* PAGE-BY-PAGE BOOK VIEW */
+      {/* Screen Content Canvas */}
+      <div className="print:hidden">
+        {isBookMode && totalPages > 1 ? (
+          /* PAGE-BY-PAGE BOOK VIEW */
         <main className="max-w-4xl lg:max-w-5xl mx-auto">
           {/* Chapter Header */}
           <div className="mb-8 pb-4 border-b border-stone-200/70 dark:border-stone-800/80 flex items-center justify-between">
@@ -381,7 +406,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
               >
                 <span className="group-hover:-translate-x-1 transition-transform">←</span>
                 <span className="truncate max-w-48 sm:max-w-64 text-left">
-                  Previous: {pages[currentPage - 1].title.replace(/^\d+[\.\s]*/, '')}
+                  Previous: {pages[currentPage - 1].title.replace(/^\d+[.\s]*/, '')}
                 </span>
               </button>
             ) : (
@@ -404,7 +429,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
                 className="flex items-center gap-3 py-3 px-5 rounded-xl bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 text-sm font-mono-meta transition-all cursor-pointer group shadow-2xs font-medium"
               >
                 <span className="truncate max-w-48 sm:max-w-64 text-left">
-                  Next: {pages[currentPage + 1].title.replace(/^\d+[\.\s]*/, '')}
+                  Next: {pages[currentPage + 1].title.replace(/^\d+[.\s]*/, '')}
                 </span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
@@ -423,6 +448,11 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
         <main className={`max-w-4xl lg:max-w-5xl mx-auto prose dark:prose-invert text-stone-800 dark:text-stone-200 font-light leading-relaxed ${isEntryMalayalam ? 'font-malayalam' : ''}`}>
           <ReactMarkdown
             components={{
+              h2: ({ children }) => (
+                <h2 className="text-2xl sm:text-3xl font-serif-title font-medium mt-16 mb-4 text-stone-900 dark:text-stone-100 border-b border-stone-200/50 dark:border-stone-800/50 pb-2">
+                  {children}
+                </h2>
+              ),
               h3: ({ children }) => (
                 <h3 className="text-2xl sm:text-3xl font-serif-title font-medium mt-16 mb-4 text-stone-900 dark:text-stone-100 border-b border-stone-200/50 dark:border-stone-800/50 pb-2">
                   {children}
@@ -462,6 +492,58 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
           </ReactMarkdown>
         </main>
       )}
+      </div>
+
+      {/* Printable Full Entry Canvas (Activated on window.print()) */}
+      <div className="hidden print:block w-full text-black">
+        <div className="border-b-2 border-stone-800 pb-4 mb-6">
+          <div className="text-xs font-mono-meta uppercase tracking-wider text-stone-600 mb-1">
+            {entry.collection || 'MISSION 2027'} • {entry.date} • {entry.category} {entry.mood ? `• Mood: ${entry.mood}` : ''}
+          </div>
+          <h1 className="text-3xl font-serif-title font-bold text-black">
+            {entry.title}
+          </h1>
+          {entry.subtitle && (
+            <p className="text-base font-serif-title italic text-stone-700 mt-1">
+              &ldquo;{entry.subtitle}&rdquo;
+            </p>
+          )}
+        </div>
+
+        <div className={`prose max-w-none text-black leading-relaxed ${isEntryMalayalam ? 'font-malayalam' : ''}`}>
+          <ReactMarkdown
+            components={{
+              h2: ({ children }) => (
+                <h2 className="text-xl font-serif-title font-bold mt-8 mb-3 pb-1 border-b border-stone-300 text-black">
+                  {children}
+                </h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-lg font-serif-title font-semibold mt-6 mb-2 text-black">
+                  {children}
+                </h3>
+              ),
+              p: ({ children }) => (
+                <p className="text-base leading-relaxed my-3 text-stone-900 font-light">
+                  {children}
+                </p>
+              ),
+              strong: ({ children }) => (
+                <strong className="font-bold text-black">
+                  {children}
+                </strong>
+              ),
+              blockquote: ({ children }) => (
+                <blockquote className="pl-4 border-l-2 border-stone-500 italic my-4 text-stone-800">
+                  {children}
+                </blockquote>
+              )
+            }}
+          >
+            {entry.content}
+          </ReactMarkdown>
+        </div>
+      </div>
     </div>
   )
 }

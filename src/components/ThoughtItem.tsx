@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import type { JournalEntry } from '../types'
 
 interface ThoughtItemProps {
@@ -7,31 +7,48 @@ interface ThoughtItemProps {
 }
 
 export const ThoughtItem: React.FC<ThoughtItemProps> = ({ entry, onClick }) => {
+  // Extract a clean content preview snippet
+  const previewSnippet = useMemo(() => {
+    const cleaned = entry.content
+      .replace(/###?\s+[^\n]+/g, '')
+      .replace(/[*_#>`]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+    return cleaned.slice(0, 150) + (cleaned.length > 150 ? '...' : '')
+  }, [entry.content])
+
+  const isMalayalam = /[\u0D00-\u0D7F]/.test(entry.content)
+
   return (
     <article
       onClick={onClick}
       className="group py-6 cursor-pointer select-none transition-colors"
     >
-      <div className="flex items-center justify-between mb-1.5">
-        <div className="flex items-center gap-2 text-xs font-mono-meta text-stone-400 dark:text-stone-500">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+        <div className="flex flex-wrap items-center gap-2 text-xs font-mono-meta text-stone-400 dark:text-stone-500">
           <time className="tracking-wider">{entry.date}</time>
           {entry.category && (
             <>
               <span>•</span>
-              <span className="text-[11px] text-stone-500 dark:text-stone-400">
+              <span className="text-[11px] text-stone-600 dark:text-stone-400 font-medium">
                 {entry.category}
               </span>
             </>
           )}
-        </div>
-        {entry.tags && entry.tags.length > 0 && (
-          <div className="flex items-center gap-1.5">
-            {entry.tags.slice(0, 2).map((t) => (
-              <span key={t} className="text-[11px] font-mono-meta text-stone-400/80 dark:text-stone-600">
-                #{t}
+          {entry.mood && (
+            <>
+              <span>•</span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono-meta bg-stone-200/70 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300">
+                mood: {entry.mood.toLowerCase()}
               </span>
-            ))}
-          </div>
+            </>
+          )}
+        </div>
+
+        {entry.sort_order && (
+          <span className="text-[11px] font-mono-meta text-stone-400/80 dark:text-stone-600">
+            §{String(entry.sort_order).padStart(2, '0')}
+          </span>
         )}
       </div>
 
@@ -42,6 +59,13 @@ export const ThoughtItem: React.FC<ThoughtItemProps> = ({ entry, onClick }) => {
       {entry.subtitle && (
         <p className="mt-1.5 text-base sm:text-lg text-stone-500 dark:text-stone-400 font-light leading-relaxed">
           {entry.subtitle}
+        </p>
+      )}
+
+      {/* Short preview of the content */}
+      {previewSnippet && (
+        <p className={`mt-2.5 text-sm text-stone-600/90 dark:text-stone-400/90 line-clamp-2 leading-relaxed font-light ${isMalayalam ? 'font-malayalam' : ''}`}>
+          {previewSnippet}
         </p>
       )}
 

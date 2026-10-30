@@ -308,12 +308,12 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
           </div>
 
           {/* Section Title */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-title font-medium text-stone-900 dark:text-stone-100 leading-snug mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-title font-medium text-stone-900 dark:text-stone-100 leading-snug mb-8 font-malayalam">
             {currentSection.title}
           </h2>
 
           {/* Section Body */}
-          <div className="prose dark:prose-invert max-w-none text-stone-800 dark:text-stone-200 font-light leading-relaxed">
+          <div className="prose dark:prose-invert max-w-none text-stone-800 dark:text-stone-200 font-light leading-relaxed font-malayalam">
             <ReactMarkdown
               components={{
                 p: ({ children }) => (
@@ -412,7 +412,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
         </main>
       ) : (
         /* WIDE CONTINUOUS SCROLL VIEW */
-        <main className="max-w-4xl lg:max-w-5xl mx-auto prose dark:prose-invert text-stone-800 dark:text-stone-200 font-light leading-relaxed">
+        <main className="max-w-4xl lg:max-w-5xl mx-auto prose dark:prose-invert text-stone-800 dark:text-stone-200 font-light leading-relaxed font-malayalam">
           <ReactMarkdown
             components={{
               h3: ({ children }) => (

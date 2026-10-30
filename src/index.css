@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'ML_TT_Revathi';
+  src: url('/fonts/ML_TT_Revathi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --bg-primary: #faf9f5;
@@ -36,15 +44,19 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Plus Jakarta Sans', 'Anek Malayalam', 'Noto Sans Malayalam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'ML_TT_Revathi', 'Plus Jakarta Sans', 'Anek Malayalam', 'Noto Sans Malayalam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     transition: background-color 0.25s ease, color 0.25s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
+.font-malayalam {
+  font-family: 'ML_TT_Revathi', 'Anek Malayalam', 'Noto Sans Malayalam', sans-serif;
+}
+
 .font-serif-title {
-  font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
+  font-family: 'ML_TT_Revathi', 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
 }
 
 .font-mono-meta {

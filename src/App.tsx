@@ -10,6 +10,7 @@ import { ReaderView } from './components/ReaderView'
 import { FullPageEditor } from './components/FullPageEditor'
 import { ArchiveView } from './components/ArchiveView'
 import { AboutView } from './components/AboutView'
+import { IntroScreen } from './components/IntroScreen'
 import type { JournalEntry, TabView } from './types'
 import { INITIAL_ENTRIES } from './data/initialEntries'
 
@@ -57,6 +58,7 @@ export function App() {
   const [activeEntry, setActiveEntry] = useState<JournalEntry | null>(null)
   const [isEditorOpen, setIsEditorOpen] = useState(false)
   const [editingEntry, setEditingEntry] = useState<JournalEntry | null>(null)
+  const [showIntro, setShowIntro] = useState<boolean>(() => !sessionStorage.getItem('vaishh_intro_seen'))
 
   // Sync theme to DOM
   useEffect(() => {
@@ -323,6 +325,14 @@ export function App() {
         }}
         onSave={handleSaveEntry}
       />
+
+      {/* Cinematic Entry / Audio Prompt Screen */}
+      {showIntro && (
+        <IntroScreen
+          userName={userName}
+          onEnter={() => setShowIntro(false)}
+        />
+      )}
     </div>
   )
 }

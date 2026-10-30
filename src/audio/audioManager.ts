@@ -137,6 +137,24 @@ class AudioManager {
     }
   }
 
+  public startRandomPlayback() {
+    this.initAudio()
+    if (!this.audio) return
+
+    // Pick a random track
+    this.currentTrackIndex = Math.floor(Math.random() * PLAYLIST.length)
+    const track = this.getCurrentTrack()
+    this.audio.src = track.src
+    this.audio.currentTime = 0
+    this.audio.volume = this.volume
+    this.audio.play().then(() => {
+      this.isPlaying = true
+      this.notify()
+    }).catch((err) => {
+      console.warn('Playback error:', err)
+    })
+  }
+
   public playRandom() {
     this.initAudio()
     if (!this.audio) return

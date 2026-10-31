@@ -12,8 +12,16 @@ import { ArchiveView } from './components/ArchiveView'
 import { AboutView } from './components/AboutView'
 import { IntroScreen } from './components/IntroScreen'
 import { PrintAllView } from './components/PrintAllView'
+import { SupabaseModal } from './components/SupabaseModal'
 import type { JournalEntry, TabView } from './types'
 import { INITIAL_ENTRIES } from './data/initialEntries'
+import {
+  isSupabaseConfigured,
+  fetchRemoteEntries,
+  upsertRemoteEntry,
+  deleteRemoteEntry,
+  subscribeToRemoteEntries,
+} from './services/supabase'
 
 export function App() {
   // Theme state
@@ -105,6 +113,38 @@ export function App() {
   const [isEditorOpen, setIsEditorOpen] = useState(false)
   const [editingEntry, setEditingEntry] = useState<JournalEntry | null>(null)
   const [showIntro, setShowIntro] = useState<boolean>(() => !sessionStorage.getItem('vaishh_intro_seen'))
+  const [isSyncModalOpen, setIsSyncModalOpen] = useState(false)
+
+  // Remote Supabase synchronization & realtime listener
+  useEffect(() => {
+    if (!isSupabaseConfigured()) return
+
+    let isMounted = true
+
+    // Fetch and merge remote entries
+    fetchRemoteEntries().then((remote) => {
+      if (!isMounted || !remote || remote.length === 0) return
+      setEntries((prev) => {
+        const map = new Map<string, JournalEntry>()
+        prev.forEach((e) => map.set(e.id, e))
+        remote.forEach((e) => map.set(e.id, e))
+        return Array.from(map.values())
+      })
+    })
+
+    // Listen for Realtime inserts/updates/deletes from Flutter Mobile or Web
+    const unsubscribe = subscribeToRemoteEntries(async () => {
+      const latest = await fetchRemoteEntries()
+      if (isMounted && latest && latest.length > 0) {
+        setEntries(latest)
+      }
+    })
+
+    return () => {
+      isMounted = false
+      unsubscribe()
+    }
+  }, [])
 
   // Sync theme to DOM
   useEffect(() => {
@@ -159,29 +199,29 @@ export function App() {
     entryData: Omit<JournalEntry, 'id' | 'createdAt'> & { id?: string }
   ) => {
     if (entryData.id) {
+      const updated: JournalEntry = {
+        ...(entries.find((e) => e.id === entryData.id) || ({} as JournalEntry)),
+        ...entryData,
+        id: entryData.id,
+      } as JournalEntry
+
       setEntries((prev) =>
-        prev.map((item) =>
-          item.id === entryData.id
-            ? { ...item, ...entryData, id: entryData.id! }
-            : item
-        )
+        prev.map((item) => (item.id === entryData.id ? updated : item))
       )
       if (activeEntry && activeEntry.id === entryData.id) {
-        setActiveEntry({
-          ...activeEntry,
-          ...entryData,
-          id: entryData.id
-        })
+        setActiveEntry(updated)
       }
+      upsertRemoteEntry(updated)
     } else {
       const newEntry: JournalEntry = {
         ...entryData,
         id: 'mission-2027-entry-' + Date.now(),
-        collection: 'MISSION 2027',
+        collection: entryData.collection || 'MISSION 2027',
         createdAt: Date.now()
       }
       setEntries((prev) => [newEntry, ...prev])
       setActiveEntry(newEntry)
+      upsertRemoteEntry(newEntry)
     }
     setEditingEntry(null)
   }
@@ -192,6 +232,7 @@ export function App() {
     if (activeEntry && activeEntry.id === id) {
       setActiveEntry(null)
     }
+    deleteRemoteEntry(id)
   }
 
   // Export JSON backup
@@ -270,6 +311,7 @@ export function App() {
                     setActiveEntry(null)
                     setCurrentTab('journal')
                   }}
+                  onOpenSyncModal={() => setIsSyncModalOpen(true)}
                 />
               </div>
 
@@ -291,6 +333,7 @@ export function App() {
                       setCurrentTab('journal')
                     }}
                     totalEntries={entries.length}
+                    onOpenSyncModal={() => setIsSyncModalOpen(true)}
                   />
                 </div>
 
@@ -387,6 +430,14 @@ export function App() {
           onEnter={() => setShowIntro(false)}
         />
       )}
+
+      {/* Supabase Cloud Sync & Mobile Link Modal */}
+      <SupabaseModal
+        isOpen={isSyncModalOpen}
+        onClose={() => setIsSyncModalOpen(false)}
+        entries={entries}
+        onSyncComplete={(synced) => setEntries(synced)}
+      />
     </div>
   )
 }

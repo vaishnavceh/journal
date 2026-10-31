@@ -1,6 +1,7 @@
 import React from 'react'
 import { formatHeaderDate } from '../utils/date'
 import { AudioPlayer } from './AudioPlayer'
+import { isSupabaseConfigured } from '../services/supabase'
 import type { TabView } from '../types'
 
 interface SidebarProps {
@@ -10,6 +11,7 @@ interface SidebarProps {
   onToggleTheme: () => void
   onNavigateHome: () => void
   totalEntries: number
+  onOpenSyncModal?: () => void
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -18,9 +20,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isDarkMode,
   onToggleTheme,
   onNavigateHome,
-  totalEntries
+  totalEntries,
+  onOpenSyncModal
 }) => {
   const currentDate = formatHeaderDate()
+  const hasCloud = isSupabaseConfigured()
 
   const navItems: { id: TabView; number: string; label: string }[] = [
     { id: 'journal', number: '01', label: 'journal' },
@@ -145,6 +149,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div>TIMEZONE: IST (UTC+05:30)</div>
         <div>STATION: VAISHH JOURNAL HQ</div>
       </div>
+
+      {/* Cloud Sync Button */}
+      {onOpenSyncModal && (
+        <button
+          onClick={onOpenSyncModal}
+          className="w-full py-2 px-3 rounded-xl border border-stone-200/80 dark:border-stone-800/80 hover:bg-stone-100 dark:hover:bg-stone-900/60 text-xs font-mono-meta flex items-center justify-between text-stone-600 dark:text-stone-400 transition-colors cursor-pointer"
+        >
+          <span className="flex items-center gap-2">
+            <span
+              className={`inline-block w-2 h-2 rounded-full ${
+                hasCloud ? 'bg-emerald-500' : 'bg-stone-400 dark:bg-stone-600'
+              }`}
+            />
+            <span>{hasCloud ? 'cloud sync active' : 'connect supabase'}</span>
+          </span>
+          <span className="text-[10px] text-stone-400">cloud ↗</span>
+        </button>
+      )}
     </aside>
   )
 }
